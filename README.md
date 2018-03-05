@@ -1,4 +1,8 @@
-# Medallia - Inbox &nbsp;&nbsp;&nbsp; <span style="font-size: 60%">[ Home assignment ]</span>
+# Medallia - Inbox
+
+### [ Home assignment ] 
+
+---
 
 ## Setup
 
