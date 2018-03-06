@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
+@import './shared.scss';
+
+.breathe-it {
+  animation: 400ms anim-breathe ease-out 800ms both;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, sans-serif;
+}
+
+#app {
+  animation: 300ms anim-fade-in 300ms both;
+}
+
+.views-wrapper {
+  text-align: center;
+}
+
+.welcome-message {
+  width: 40%;
+  min-width: 400px;
+  padding: 30px;
+  text-align: center;
+  margin: 50px auto;
+
+  .counters {
+    margin: 50px 0;
+  }
+}

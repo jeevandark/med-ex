@@ -1,0 +1,20 @@
+@keyframes anim-breathe {
+    0% {
+        transform: scale(1, 1);
+    }
+    35% {
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes anim-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
