@@ -1,9 +1,5 @@
 # Medallia - Inbox
 
-### [ Home assignment ] 
-
----
-
 ## Setup
 
 Execute `npm install` in the project directory to install all dependecies.
