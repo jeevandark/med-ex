@@ -3,20 +3,35 @@ import actionTypes from "../actionTypes";
 const messagesReducerInitialState = {
     messagesById: {},
     messagesIdArray: [],
-    unreadMessages: 0
+    numOfUnreadMessages: 0
 };
 
 const messagesReducer = (state = messagesReducerInitialState, action) => {
     switch (action.type) {
         case actionTypes.MESSAGES_FETCHED:
-            state = {
-                ...state
+            let mapById = {};
+            let arrById = [];
+            let numOfUnread = 0;
+            if (action.payload != null) {
+                mapById = action.payload.reduce((map, obj) => {
+                    map[obj.id] = obj;
+                    return map;
+                }, {});
+                arrById = action.payload.map(item => item.id);
+                numOfUnread = action.payload.reduce((countOfUnread, curItem) => {
+                    return curItem.isRead ? countOfUnread : countOfUnread + 1;
+                }, 0);
+            }
+            let newState = {
+                ...state,
+                messagesById: mapById,
+                messagesIdArray: arrById,
+                numOfUnreadMessages: numOfUnread
             };
-            break;
+            return newState;
         default:
-            break;
+            return state;
     }
-    return state;
 }
 
 export default messagesReducer;

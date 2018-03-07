@@ -1,4 +1,4 @@
-import messages_mock from './messages-mock';
+import { mock_messages } from './mock-messages';
 
 export const keyMessageListInSessionStorage = 'keyMessageListInSessionStorage';
 
@@ -11,7 +11,7 @@ export function fetchMessages(filterObj = null) {
         if (sessionSavedListStr != null) {
             retArr = JSON.parse(sessionSavedListStr);
         } else {
-            retArr = messages_mock;
+            retArr = mock_messages;
         }
         resolve(retArr);
     });

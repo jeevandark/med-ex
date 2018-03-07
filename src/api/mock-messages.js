@@ -1,4 +1,4 @@
-export const messages_mock = [
+export const mock_messages = [
     {
         id: 1,
         from: "Chen Ofek",
@@ -8,7 +8,7 @@ export const messages_mock = [
     },
     {
         id: 2,
-        from: "Lital Bash",
+        from: "Maayan Ofek",
         subject: "Don't forget tonight",
         content: "Hey  I just wanted to remind you about our meeting tonight.... Don't forget !  and come ready..  :) \n\nLital",
         isRead: false

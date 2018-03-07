@@ -5,7 +5,7 @@ import { Paper, FlatButton } from "material-ui";
 export default class Home extends Component {
   render() {
     return (
-      <Paper zDepth="2" className="welcome-message">
+      <Paper zDepth={2} className="welcome-message">
         <h3>Hello {this.props.name}</h3>
         {this.counters}
         {this.buttonGotoMessages}
@@ -35,12 +35,9 @@ export default class Home extends Component {
 
   get buttonGotoMessages() {
     return (
-      <div className="breathe-it">
-        <FlatButton containerElement={<Link to="/messages" />}
-          label="View Messages" primary={true}>
-          <Link to="/messages" />
-        </FlatButton>
-      </div>
+      <FlatButton containerElement={<Link to="/messages" />}
+        label="View Messages" primary={true}>
+      </FlatButton>
     );
   }
 }

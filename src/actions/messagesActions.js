@@ -6,3 +6,9 @@ export function setMessages(mapOfMessages) {
         payload: mapOfMessages
     };
 }
+
+export function fetchAllMessages() {
+    return {
+        type: actionTypes.MESSAGES_FETCH_REQUESTED
+    };
+}

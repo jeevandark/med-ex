@@ -7,24 +7,50 @@ import NotFound from './components/NotFound';
 import './main.css';
 import MessageIndex from './containers/MessageIndex';
 import Header from './components/Header';
+import { setActiveUser } from './actions/userActions';
+import { fetchAllMessages } from './actions/messagesActions';
+import { mock_user } from "./api/mock-user";
 
 function mapStateToProps(state) {
   return {
-
+    fullUserName: state.user.firstName + ' ' + state.user.lastName,
+    firstName: state.user.firstName,
+    numOfMessages: state.messages.messagesIdArray.length,
+    numOfUnreadMessages: state.messages.numOfUnreadMessages
   };
 }
 
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    loadUser: () => {
+      dispatch(setActiveUser(mock_user));
+    },
+    fetchAllMessages: () => {
+      dispatch(fetchAllMessages());
+    }
+  }
+}
+
+
 class App extends Component {
+
+  componentDidMount() {
+    this.props.loadUser();
+    this.props.fetchAllMessages();
+  }
+
   render() {
     return (
       <MuiThemeProvider>
-        <Header />
-        <div className="mui-container views-wrapper">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/messages" component={MessageIndex} />
-            <Route component={NotFound} />
-          </Switch>
+        <div>
+          <Header userName={this.props.fullUserName} />
+          <div className="mui-container views-wrapper">
+            <Switch>
+              <Route exact path="/" render={() => <Home name={this.props.firstName} numOfMessages={this.props.numOfMessages} numOfUnreadMessages={this.props.numOfUnreadMessages}/>} />
+              <Route path="/messages" component={MessageIndex} />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
         </div>
       </MuiThemeProvider>
     );
@@ -33,4 +59,5 @@ class App extends Component {
 
 export default withRouter(connect(
   mapStateToProps,
+  mapDispatchToProps
 )(App));
