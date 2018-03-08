@@ -1,4 +1,5 @@
-import actionTypes from "../actionTypes";
+import { MESSAGES_FETCHED, MESSAGES_MARK_AS_READ } from '../actions/messagesActions';
+import { keyMessageListInSessionStorage } from '../api/apiMessages';
 
 const messagesReducerInitialState = {
     messagesById: {},
@@ -8,7 +9,7 @@ const messagesReducerInitialState = {
 
 const messagesReducer = (state = messagesReducerInitialState, action) => {
     switch (action.type) {
-        case actionTypes.MESSAGES_FETCHED:
+        case MESSAGES_FETCHED:
             let mapById = {};
             let arrById = [];
             let numOfUnread = 0;
@@ -29,9 +30,36 @@ const messagesReducer = (state = messagesReducerInitialState, action) => {
                 numOfUnreadMessages: numOfUnread
             };
             return newState;
+        case MESSAGES_MARK_AS_READ:
+            let myMessage = state.messagesById[action.payload];
+            if (myMessage != null) {
+                if (!myMessage.isRead) {
+                    let updatedMsgById = {
+                        ...state.messagesById
+                    };
+                    updatedMsgById[action.payload].isRead = true;
+                    let newUnreadCount = state.numOfUnreadMessages - 1;
+                    let newState = {
+                        ...state,
+                        messagesById: updatedMsgById,
+                        numOfUnreadMessages: newUnreadCount
+                    };
+                    saveMessagesAsArrayInSessionStorage(updatedMsgById);
+                    return newState;
+                }
+            }
+            return state;
         default:
             return state;
     }
+}
+
+function saveMessagesAsArrayInSessionStorage(msgById) {
+    let myKeys = Object.keys(msgById);
+    let arrToSave = myKeys.map(item => msgById[item]);
+    if (arrToSave != null) {
+        sessionStorage.setItem(keyMessageListInSessionStorage, JSON.stringify(arrToSave));
+    };
 }
 
 export default messagesReducer;

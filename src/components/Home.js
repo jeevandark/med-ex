@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Paper, FlatButton } from "material-ui";
+import { Link, withRouter } from "react-router-dom";
+import { Paper, RaisedButton } from "material-ui";
 
-export default class Home extends Component {
+class Home extends Component {
   render() {
     return (
       <Paper zDepth={2} className="welcome-message">
@@ -35,9 +35,11 @@ export default class Home extends Component {
 
   get buttonGotoMessages() {
     return (
-      <FlatButton containerElement={<Link to="/messages" />}
+      <RaisedButton containerElement={<Link to="/messages" />}
         label="View Messages" primary={true}>
-      </FlatButton>
+      </RaisedButton>
     );
   }
 }
+
+export default withRouter(Home);

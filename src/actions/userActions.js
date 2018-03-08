@@ -1,8 +1,8 @@
-import actionTypes from '../actionTypes';
+export const USER_ACTIVATE = 'user.ACTIVATE';
 
 export function setActiveUser(userObj) {
     return {
-        type: actionTypes.USER_ACTIVATE,
+        type: USER_ACTIVATE,
         payload: userObj
     };
 }

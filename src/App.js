@@ -43,7 +43,7 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div>
-          <Header userName={this.props.fullUserName} />
+          <Header userName={this.props.fullUserName} numOfUnreadMessages={this.props.numOfUnreadMessages}/>
           <div className="mui-container views-wrapper">
             <Switch>
               <Route exact path="/" render={() => <Home name={this.props.firstName} numOfMessages={this.props.numOfMessages} numOfUnreadMessages={this.props.numOfUnreadMessages}/>} />
